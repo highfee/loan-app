@@ -20,9 +20,9 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 
 // import PlaidLink from "./PlaidLink";
-// import { signIn, signUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -32,7 +32,6 @@ const AuthForm = ({ type }: { type: string }) => {
   // const loggedIn = await getLoggedInUser();
 
   const formSchema = authFormSchema(type);
-  // 1. Define your form.
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,15 +41,15 @@ const AuthForm = ({ type }: { type: string }) => {
     },
   });
 
-  // 2. Define a submit handler.
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setisLoading(true);
+    console.log(data);
     try {
       //Sign up with appwrite
 
       const userData = {
-        firstName: data.firstName!,
-        lastName: data.lastName!,
+        firstname: data.firstname!,
+        lastname: data.lastname!,
         address1: data.address1!,
         city: data.city!,
         state: data.state!,
@@ -61,6 +60,8 @@ const AuthForm = ({ type }: { type: string }) => {
 
       if (type === "sign-up") {
         const newUser = await signUp(userData);
+
+        console.log(newUser);
         setUser(newUser);
       }
       if (type === "sign-in") {
@@ -111,16 +112,16 @@ const AuthForm = ({ type }: { type: string }) => {
                   <div className="flex gap-4">
                     <CustomInput
                       control={form.control}
-                      name="firstName"
+                      name="firstname"
                       label="First Name"
-                      placeholder="Example: Dan"
+                      placeholder="Example: Musa"
                       type={"text"}
                     />
                     <CustomInput
                       control={form.control}
-                      name="lastName"
+                      name="lastname"
                       label="Last Name"
-                      placeholder="Example: Danny"
+                      placeholder="Example: Isah"
                       type={"text"}
                     />
                   </div>
@@ -143,7 +144,7 @@ const AuthForm = ({ type }: { type: string }) => {
                       control={form.control}
                       name="state"
                       label="State"
-                      placeholder="NY"
+                      placeholder="kaduna"
                       type={"text"}
                     />
 

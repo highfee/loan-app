@@ -14,7 +14,7 @@ const {
 export const signIn = async ({ email, password }: signInProps) => {};
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
-  const { email, firstName, lastName } = userData;
+  const { email, firstname, lastname } = userData;
 
   let newUserAccount;
   try {
@@ -24,7 +24,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       ID.unique(),
       email,
       password,
-      `${firstName} ${lastName}`
+      `${firstname} ${lastname}`
     );
 
     if (!newUserAccount) throw new Error("Error creating user");
