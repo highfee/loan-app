@@ -22,7 +22,7 @@ export default function RootLayout({
   //   postalCode: "",
   //   dateOfBirth: "",
   //   ssn: "",
-  // };
+  // }
 
   const loggedIn = null;
   if (!loggedIn) redirect("/sign-in");

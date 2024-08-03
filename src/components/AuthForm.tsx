@@ -54,9 +54,7 @@ const AuthForm = ({ type }: { type: string }) => {
         address1: data.address1!,
         city: data.city!,
         state: data.state!,
-        postalCode: data.postalCode!,
         dateOfBirth: data.dateOfBirth!,
-        ssn: data.ssn!,
         email: data.email,
         password: data.password,
       };
@@ -107,7 +105,7 @@ const AuthForm = ({ type }: { type: string }) => {
       ) : (
         <>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               {type === "sign-up" && (
                 <>
                   <div className="flex gap-4">
