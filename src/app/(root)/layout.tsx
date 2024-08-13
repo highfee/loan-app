@@ -1,30 +1,15 @@
 import Sidebar from "@/components/Sidebar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const loggedIn = {
-  //   $id: "",
-  //   email: "",
-  //   userId: "",
-  //   dwollaCustomerUrl: "",
-  //   dwollaCustomerId: "",
-  //   firstName: "",
-  //   lastName: "",
-  //   name: "", //ADDED
-  //   address1: "",
-  //   city: "",
-  //   state: "",
-  //   postalCode: "",
-  //   dateOfBirth: "",
-  //   ssn: "",
-  // }
+  const loggedIn = await getLoggedInUser();
 
-  const loggedIn = null;
   if (!loggedIn) redirect("/sign-in");
 
   return (

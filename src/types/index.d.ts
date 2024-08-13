@@ -29,8 +29,8 @@ declare type User = {
   userId: string;
   dwollaCustomerUrl: string;
   dwollaCustomerId: string;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   name: string; //ADDED
   address1: string;
   city: string;

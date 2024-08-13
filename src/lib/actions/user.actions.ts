@@ -1,6 +1,6 @@
 "use server";
 
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../server/appwrite";
 import { cookies } from "next/headers";
 import { parseStringify } from "../utils";
@@ -11,7 +11,53 @@ const {
   APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
 } = process.env;
 
-export const signIn = async ({ email, password }: signInProps) => {};
+export const getUserinfo = async ({ userId }: getUserInfoProps) => {
+  try {
+    const { database } = await createAdminClient();
+    const user = await database.listDocuments(
+      DATABASE_ID!,
+      USER_COLLECTION_ID!,
+      [Query.equal("userId", [userId])]
+    );
+    return parseStringify(user.documents[0]);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export async function getLoggedInUser() {
+  try {
+    const { account } = await createSessionClient();
+    const result = await account.get();
+    const user = await getUserinfo({ userId: result.$id });
+    return parseStringify(user);
+  } catch (error) {
+    return null;
+  }
+}
+
+export const signIn = async ({ email, password }: signInProps) => {
+  try {
+    const { account } = await createAdminClient();
+
+    const session = await account.createEmailPasswordSession(email, password);
+
+    cookies().set("appwrite-session", session.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
+
+    const user = await getUserinfo({ userId: session.userId });
+
+    await account.createEmailPasswordSession(email, password);
+
+    return parseStringify(user);
+  } catch (error) {
+    console.error("Error", error);
+    return parseStringify(error);
+  }
+};
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
   const { email, firstname, lastname } = userData;
@@ -54,13 +100,32 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   }
 };
 
-// ... your initilization functions
-
-export async function getLoggedInUser() {
+export const logoutAccount = async () => {
   try {
     const { account } = await createSessionClient();
-    return await account.get();
+    cookies().delete("appwrite-session");
+
+    await account.deleteSession("current");
   } catch (error) {
     return null;
   }
-}
+};
+
+export const createLinkToken = async (user: User) => {
+  try {
+    const tokenParams = {
+      user: {
+        client_user_id: user.$id,
+      },
+      client_name: `${user.firstName} ${user.lastName}`,
+      products: ["auth"] as Products[],
+      language: "en",
+      country_codes: ["US"] as CountryCode[],
+    };
+
+    const response = await plaidClient.linkTokenCreate(tokenParams);
+    return parseStringify({ linkToken: response.data.link_token });
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -20,7 +20,8 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions/user.actions";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 // import PlaidLink from "./PlaidLink";
 
@@ -43,7 +44,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setisLoading(true);
-    console.log(data);
+
     try {
       //Sign up with appwrite
 
@@ -60,8 +61,6 @@ const AuthForm = ({ type }: { type: string }) => {
 
       if (type === "sign-up") {
         const newUser = await signUp(userData);
-
-        console.log(newUser);
         setUser(newUser);
       }
       if (type === "sign-in") {
@@ -69,6 +68,8 @@ const AuthForm = ({ type }: { type: string }) => {
           email: data.email,
           password: data.password,
         });
+
+        console.log(response);
 
         if (response) router.push("/");
       }
@@ -101,7 +102,7 @@ const AuthForm = ({ type }: { type: string }) => {
       </header>
       {user ? (
         <div className="flex flex-col gap-4">
-          {/* <PlaidLink user={user} variant="primary" /> */}
+          <PlaidLink user={user} variant="primary" />
         </div>
       ) : (
         <>
