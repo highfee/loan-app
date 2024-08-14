@@ -1,3 +1,4 @@
+import MobileNavbar from "@/components/MobileNavbar";
 import Sidebar from "@/components/Sidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import Image from "next/image";
@@ -18,7 +19,10 @@ export default async function RootLayout({
       <div className="flex size-full flex-col">
         <div className="root-layout">
           <Image src={"/icons/logo.svg"} width={30} height={30} alt="icon" />
-          {/* <div> <MobileNavbar user={loggedIn} /> </div> */}
+          <div>
+            {" "}
+            <MobileNavbar user={loggedIn} />{" "}
+          </div>
         </div>
         {children}
       </div>
