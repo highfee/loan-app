@@ -3,10 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-/**
- *
- *
- */
 const Footer = ({ user, type = "desktop" }: FooterProps) => {
   const router = useRouter();
 

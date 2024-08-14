@@ -123,16 +123,14 @@ declare type AddFundingSourceParams = {
 };
 
 declare type NewDwollaCustomerParams = {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   email: string;
   type: string;
   address1: string;
   city: string;
   state: string;
-  postalCode: string;
   dateOfBirth: string;
-  ssn: string;
 };
 
 declare interface CreditCardProps {
