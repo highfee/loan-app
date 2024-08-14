@@ -30,7 +30,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
   const [user, setUser] = useState(null);
   const [isLoading, setisLoading] = useState(false);
-  const [loginError, setLoginError] = useState(null);
+  const [loginError, setLoginError] = useState<any>(null);
 
   const formSchema = authFormSchema(type);
 
@@ -67,6 +67,8 @@ const AuthForm = ({ type }: { type: string }) => {
           setLoginError(response);
           return;
         }
+
+        if (response) router.push("/");
       }
       if (type === "sign-in") {
         const response = await signIn({
@@ -79,7 +81,7 @@ const AuthForm = ({ type }: { type: string }) => {
           return;
         }
 
-        // if (response) router.push("/");
+        if (response) router.push("/");
       }
     } catch (error) {
       console.log(error);
