@@ -20,7 +20,6 @@ export default async function RootLayout({
         <div className="root-layout">
           <Image src={"/icons/logo.svg"} width={30} height={30} alt="icon" />
           <div>
-            {" "}
             <MobileNavbar user={loggedIn} />{" "}
           </div>
         </div>
