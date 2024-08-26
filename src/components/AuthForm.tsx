@@ -20,8 +20,14 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
+import {
+  getLoggedInUser,
+  googleAuth,
+  signIn,
+  signUp,
+} from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
+import { signUpWithGoogle } from "@/lib/server/oauth";
 
 // import PlaidLink from "./PlaidLink";
 
@@ -54,7 +60,6 @@ const AuthForm = ({ type }: { type: string }) => {
         address1: data.address1!,
         city: data.city!,
         state: data.state!,
-        dateOfBirth: data.dateOfBirth!,
         email: data.email,
         password: data.password,
       };
@@ -62,6 +67,7 @@ const AuthForm = ({ type }: { type: string }) => {
       if (type === "sign-up") {
         const response = await signUp(userData);
         setUser(response);
+        console.log(response);
 
         if (response.code == 409) {
           setLoginError(response);
@@ -110,6 +116,11 @@ const AuthForm = ({ type }: { type: string }) => {
           </h1>
         </div>
       </header>
+      <form action={googleAuth}>
+        <button type="submit" className="w-full bg-white  p-3 rounded-full ">
+          Continue with Google
+        </button>
+      </form>
 
       <>
         {loginError && (
@@ -145,27 +156,20 @@ const AuthForm = ({ type }: { type: string }) => {
                   placeholder="Enter your address1"
                   type={"text"}
                 />
-                <CustomInput
-                  control={form.control}
-                  name="city"
-                  label="City"
-                  placeholder="Enter your City"
-                  type={"text"}
-                />
+
                 <div className="flex gap-4">
+                  <CustomInput
+                    control={form.control}
+                    name="city"
+                    label="City"
+                    placeholder="Enter your City"
+                    type={"text"}
+                  />
                   <CustomInput
                     control={form.control}
                     name="state"
                     label="State"
                     placeholder="kaduna"
-                    type={"text"}
-                  />
-
-                  <CustomInput
-                    control={form.control}
-                    name="dateOfBirth"
-                    label="Date of Birth"
-                    placeholder="YYYY-MM-DD"
                     type={"text"}
                   />
                 </div>

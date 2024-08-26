@@ -13,7 +13,6 @@ declare type SignUpParams = {
   address1: string;
   city: string;
   state: string;
-  dateOfBirth: string;
   email: string;
   password: string;
 };
@@ -36,7 +35,6 @@ declare type User = {
   city: string;
   state: string;
   postalCode: string;
-  dateOfBirth: string;
   ssn: string;
 };
 
@@ -130,7 +128,6 @@ declare type NewDwollaCustomerParams = {
   address1: string;
   city: string;
   state: string;
-  dateOfBirth: string;
 };
 
 declare interface CreditCardProps {

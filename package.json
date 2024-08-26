@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3002",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "dwolla": "^0.1.5",
     "dwolla-v2": "^3.4.0",
+    "hono": "^4.5.8",
     "lucide-react": "^0.403.0",
     "next": "14.2.4",
     "node-appwrite": "^13.0.0",
@@ -35,6 +36,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "drizzle-kit": "^0.24.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",

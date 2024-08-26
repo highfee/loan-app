@@ -19,9 +19,9 @@ export const sidebarLinks = [
     route: "/contributions",
     label: "Contributions",
   },
-  // {
-  //   imgURL: "/icons/money-send.svg",
-  //   route: "/payment-transfer",
-  //   label: "Transfer Funds",
-  // },
+  {
+    imgURL: "/icons/dollar-circle.svg",
+    route: "/contributions",
+    label: "Transactions",
+  },
 ];

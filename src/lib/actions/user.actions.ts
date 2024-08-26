@@ -2,7 +2,7 @@
 
 import { ID, Query } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../server/appwrite";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { encryptId, extractCustomerIdFromUrl, parseStringify } from "../utils";
 import {
   CountryCode,
@@ -14,10 +14,13 @@ import { plaidClient } from "../server/plaid";
 
 import { revalidatePath } from "next/cache";
 
+import { OAuthProvider } from "node-appwrite";
+
 import {
   addFundingSource,
   createDwollaCustomer,
 } from "../server/dwolla.actions";
+import { redirect } from "next/navigation";
 
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
@@ -49,6 +52,25 @@ export async function getLoggedInUser() {
     return null;
   }
 }
+
+export const googleAuth = async () => {
+  try {
+    const { account, database } = await createAdminClient();
+
+    const origin = headers().get("origin");
+
+    const redirectUrl = await account.createOAuth2Token(
+      OAuthProvider.Google,
+      `${origin}/api/oauth`,
+      `${origin}/sign-up`
+    );
+    console.log(redirectUrl);
+    return redirect(redirectUrl);
+  } catch (error) {
+    console.log(error);
+    return parseStringify(error);
+  }
+};
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
