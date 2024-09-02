@@ -6,7 +6,7 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/icons/person-outline.svg",
-    route: "/Profile",
+    route: "/profile",
     label: "Profile",
   },
   {
@@ -21,7 +21,12 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/icons/dollar-circle.svg",
-    route: "/contributions",
+    route: "/transactions",
     label: "Transactions",
+  },
+  {
+    imgURL: "/icons/news.svg",
+    route: "/transactions",
+    label: "Cooperative Activities",
   },
 ];

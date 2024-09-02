@@ -10,23 +10,20 @@ const TotalBalancebox = ({
 }: TotlaBalanceBoxProps) => {
   return (
     <section className="total-balance">
-      {/* Div for the chart */}
-      <div className="total-balance-chart">
-        {/* <Doughnutchart accounts={accounts} /> */}
-      </div>
-
-      {/* Div for the connected bank accounts */}
       <div className="flex flex-col gap-6">
         <h2 className="header-2">Bank Accounts: 1 </h2>
-        {/* Div for the current balance */}
+
         <div className="flex flex-col gap-2">
           <p className="total-balance-label">Total Current Balance</p>
-          {/* Display current balance, formatted using query string */}
+
           <div className="total-balance-amount flex-center gap-2">
             <Animatedcounter amount={totalCurrentBalance} />
-            {/* {formatAmount()} Replaced by the animated counter */}
           </div>
         </div>
+      </div>
+
+      <div className="text-bankGradient">
+        <button>+ Top up</button>
       </div>
     </section>
   );

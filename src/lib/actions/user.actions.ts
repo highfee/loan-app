@@ -64,7 +64,7 @@ export const googleAuth = async () => {
       `${origin}/api/oauth`,
       `${origin}/sign-up`
     );
-    console.log(redirectUrl);
+
     return redirect(redirectUrl);
   } catch (error) {
     console.log(error);

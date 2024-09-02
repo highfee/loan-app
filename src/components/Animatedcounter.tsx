@@ -13,7 +13,6 @@ const Animatedcounter = ({ amount }: { amount: number }) => {
         // duration={2.75}
         decimals={2}
       />
-      {/* A react library that counts up  to a certain number */}
     </div>
   );
 };

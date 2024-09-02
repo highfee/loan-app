@@ -2,6 +2,10 @@ import HeaderBox from "@/components/HeaderBox";
 import TotalBalancebox from "@/components/TotalBalancebox";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
+import NextRepaymentBox from "@/components/NextRepaymentBox";
+import TransactionHistoryBox from "@/components/TransactionHistoryBox";
+import CardsBox from "@/components/CardsBox";
+
 const Home = async () => {
   const loggedIn = await getLoggedInUser();
   return (
@@ -11,28 +15,24 @@ const Home = async () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstName || "Guest"}
-            // user={loggedIn?.firstName || "Guest"}
+            user={loggedIn?.firstname || "Guest"}
             subtext="Access and manage your account and transactions efficiently"
           />
-          <TotalBalancebox
-            accounts={[]}
-            totalBanks={1}
-            totalCurrentBalance={120050}
-          />
+          <div className="flex flex-col lg:flex-row gap-5 justify-between">
+            <TotalBalancebox
+              accounts={[]}
+              totalBanks={1}
+              totalCurrentBalance={0}
+            />
+            <NextRepaymentBox nextRepaymentAmount={20500} />
+          </div>
         </header>
-        {/* <RecentTransactions
-      accounts={accountsData}
-      transactions={account?.transactions}
-      appwriteItemId={appwriteItemId}
-      page={currentPage}
-    /> */}
+
+        <div className="flex flex-col lg:flex-row gap-5">
+          <TransactionHistoryBox />
+          <CardsBox />
+        </div>
       </div>
-      {/* <RightSidebar
-    user={loggedIn}
-    transactions={account?.transactions}
-    banks={accountsData?.slice(0, 2)}
-  /> */}
     </section>
   );
 };

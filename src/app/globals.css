@@ -118,11 +118,7 @@
   }
 
   .total-balance {
-    @apply flex w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-chart sm:gap-6 sm:p-6;
-  }
-
-  .total-balance-chart {
-    @apply flex size-full max-w-[100px] items-center sm:max-w-[120px];
+    @apply flex  gap-10 rounded-xl border border-gray-200 p-4 shadow-chart  sm:p-6  flex-1 justify-between;
   }
 
   .total-balance-label {
@@ -131,6 +127,14 @@
 
   .total-balance-amount {
     @apply text-24 lg:text-30 flex-1 font-semibold text-gray-900;
+  }
+
+  .total-balance button {
+    @apply text-lg font-semibold;
+  }
+
+  .total-balance .repay-button {
+    @apply rounded-full py-1 px-4 bg-bankGradient text-white hover:bg-indigo-700 text-base md:text-lg md:py-2 md:px-5;
   }
 
   .recent-transactions {
@@ -374,5 +378,40 @@
 
   .sidebar-label {
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
+  }
+
+  .cards-box {
+    @apply flex-1 shadow-chart  rounded-xl;
+  }
+
+  .cards-box-header {
+    @apply flex justify-between gap-5 items-center px-5 py-3 font-semibold text-xl text-gray-900;
+  }
+
+  .cards-box-header button {
+    @apply text-bankGradient text-sm px-2 py-1 border-2 border-bankGradient rounded-full;
+  }
+  /* hr {
+    @apply shadow-chart;
+  } */
+  .cards-container {
+    @apply p-5 flex items-center gap-5 mt-4 lg:mt-7;
+  }
+
+  .cards {
+    @apply flex-1 h-[320px] bg-bankGradient rounded-xl;
+  }
+  .cards-nav-container {
+    @apply flex  gap-1  p-5;
+  }
+  .cards_nav {
+    @apply size-3 rounded-full border border-bankGradient inline-block;
+  }
+
+  .transaction-history-box {
+    @apply flex-1;
+  }
+  .transaction-history-box header {
+    @apply flex justify-between items-center px-5 py-3;
   }
 }

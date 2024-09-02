@@ -6,15 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
@@ -26,10 +18,7 @@ import {
   signIn,
   signUp,
 } from "@/lib/actions/user.actions";
-import PlaidLink from "./PlaidLink";
-import { signUpWithGoogle } from "@/lib/server/oauth";
-
-// import PlaidLink from "./PlaidLink";
+import { AiOutlineGoogle } from "react-icons/ai";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -117,7 +106,11 @@ const AuthForm = ({ type }: { type: string }) => {
         </div>
       </header>
       <form action={googleAuth}>
-        <button type="submit" className="w-full bg-white  p-3 rounded-full ">
+        <button
+          type="submit"
+          className="w-full bg-white  p-3 rounded-full flex items-center gap-2 justify-center"
+        >
+          <AiOutlineGoogle size={24} fill="#0179FE" />
           Continue with Google
         </button>
       </form>
