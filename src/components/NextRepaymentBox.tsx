@@ -1,6 +1,10 @@
 import Animatedcounter from "./Animatedcounter";
 
-const NextRepaymentBox = ({ nextRepaymentAmount }) => {
+const NextRepaymentBox = ({
+  nextRepaymentAmount,
+}: {
+  nextRepaymentAmount: number;
+}) => {
   return (
     <section className="total-balance">
       <div className="flex flex-col gap-6">
