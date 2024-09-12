@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import MobileNavbar from "@/components/MobileNavbar";
 import Sidebar from "@/components/Sidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
@@ -14,7 +15,7 @@ export default async function RootLayout({
   if (!loggedIn) redirect("/sign-in");
 
   return (
-    <main className="flex h-screen w-full font-inter">
+    <main className="flex h-screen max-h-screen w-full font-inter overflow-hidden">
       <Sidebar user={loggedIn} />
       <div className="flex size-full flex-col">
         <div className="root-layout">
@@ -23,6 +24,7 @@ export default async function RootLayout({
             <MobileNavbar user={loggedIn} />{" "}
           </div>
         </div>
+        {/* <Header /> */}
         {children}
       </div>
     </main>

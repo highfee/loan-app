@@ -20,7 +20,15 @@ const CardsBox = () => {
               width={28}
             />
           </div>
-          <div className="cards"></div>
+          <div className="cards">
+            <Image
+              src="/icons/card.svg"
+              alt="cards_preview"
+              height={320}
+              width={500}
+              className="size-full"
+            />
+          </div>
           <div>
             <Image
               src="/icons/right.svg"

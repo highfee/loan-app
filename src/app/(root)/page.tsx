@@ -16,6 +16,7 @@ const Home = async () => {
             type="greeting"
             title="Welcome"
             user={loggedIn?.firstname || "Guest"}
+            // user="Guest"
             subtext="Access and manage your account and transactions efficiently"
           />
           <div className="flex flex-col lg:flex-row gap-5 justify-between">
@@ -24,7 +25,7 @@ const Home = async () => {
               totalBanks={1}
               totalCurrentBalance={0}
             />
-            <NextRepaymentBox nextRepaymentAmount={20500} />
+            <NextRepaymentBox nextRepaymentAmount={0} />
           </div>
         </header>
 

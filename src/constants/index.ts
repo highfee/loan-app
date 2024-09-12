@@ -30,3 +30,18 @@ export const sidebarLinks = [
     label: "Cooperative Activities",
   },
 ];
+
+export const profile_links = [
+  {
+    route: "/profile",
+    label: "My Profile",
+  },
+  {
+    route: "/profile/password",
+    label: "Password",
+  },
+  {
+    route: "/profile/notifications",
+    label: "Notifications",
+  },
+];

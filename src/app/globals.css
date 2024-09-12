@@ -399,7 +399,7 @@
   }
 
   .cards {
-    @apply flex-1 h-[320px] bg-bankGradient rounded-xl;
+    @apply flex-1 h-[320px] rounded-xl;
   }
   .cards-nav-container {
     @apply flex  gap-1  p-5;
@@ -413,5 +413,24 @@
   }
   .transaction-history-box header {
     @apply flex justify-between items-center px-5 py-3;
+  }
+
+  .header {
+    @apply w-full hidden lg:flex p-5 justify-end bg-white;
+  }
+
+  .profile_sidebar {
+    @apply border-r border-gray-200 p-5 py-8 h-full w-[250px] hidden md:block;
+  }
+
+  .profile_sidebar_links {
+    @apply flex flex-col gap-2;
+  }
+
+  .profile_sidebar_link {
+    @apply pl-3 py-3 pr-8  rounded-2xl text-gray-900 font-semibold;
+  }
+  .profile_sidebar_link.active {
+    @apply bg-gray-50;
   }
 }

@@ -36,6 +36,7 @@ declare type User = {
   state: string;
   postalCode: string;
   ssn: string;
+  profile_img_url: string;
 };
 
 declare type NewUserParams = {
